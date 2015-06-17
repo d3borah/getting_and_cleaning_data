@@ -1,18 +1,18 @@
-#library(data.table)
-#setwd("./getting_and_cleaning_data")
+library(data.table)
+setwd("./getting_and_cleaning_data")
 
 #download the file, unzip it, and examine contents
-#fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-#download.file(fileUrl, destfile = "./data/tempfile.zip", method = "curl")
-#unzip("./data/tempfile.zip", exdir="./data/")
+fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+download.file(fileUrl, destfile = "./data/tempfile.zip", method = "curl")
+unzip("./data/tempfile.zip", exdir="./data/")
 #list.files("./data/UCI HAR Dataset/")
 
 #read the feature and activity labels into data tables
 feature_labels_df <- read.table("./data/UCI HAR Dataset/features.txt", header=FALSE, col.names=c("feature_id","feature_name"))
 activity_labels_df <- read.table("./data/UCI HAR Dataset/activity_labels.txt", header=FALSE, col.names=c("activity_id","activity_type"))
 feature_labels_df
+
 #edit the column names to remove parentheses
-#".*-foo\\(.*" 
 feature_labels_df$feature_name <- gsub("\\(\\)", "", feature_labels_df[,2], ignore.case = FALSE,fixed = FALSE)
 feature_labels_df$feature_name <- gsub("," , ".", feature_labels_df[,2], ignore.case = FALSE,fixed = FALSE)
 feature_labels_df$feature_name <- gsub("-" , ".", feature_labels_df[,2], ignore.case = FALSE,fixed = FALSE)
@@ -66,7 +66,8 @@ rm(merged_data,feature_labels,selectedcolumns)
 
 #create new tidy data set of the averages of the selected features per subject per activity
 ag <- merged_data_mean_std[,lapply(.SD,mean),by=list(subject_id,activity_type)]
-table(ag$subject_id)
-table(ag$activity_type)
+#table(ag$subject_id)
+#table(ag$activity_type)
+
+#write results table to file
 write.table(ag,"tidy_aggregated_data.txt", row.name=FALSE)
-??write.table
