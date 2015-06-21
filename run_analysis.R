@@ -27,11 +27,15 @@ X_test_df <- read.table("./data/UCI HAR Dataset/test/X_test.txt", header=FALSE,c
 head(X_test_df)
 y_test_df <- read.table("./data/UCI HAR Dataset/test/y_test.txt", header=FALSE, col.names=c("activity_id"))
 subject_test_df <- read.table("./data/UCI HAR Dataset/test/subject_test.txt", header=FALSE, col.names=c("subject_id"))
-table(subject_test_df)
 X_train_df <- read.table("./data/UCI HAR Dataset/train/X_train.txt", header=FALSE, col.names=feature_labels)
 y_train_df <- read.table("./data/UCI HAR Dataset/train/y_train.txt", header=FALSE, col.names=c("activity_id"))
 subject_train_df <- read.table("./data/UCI HAR Dataset/train/subject_train.txt", header=FALSE, col.names=c("subject_id"))
-table(subject_train_df)
+
+#examine data
+#table(subject_test_df)
+#table(subject_train_df)
+#table(y_test_df)
+#table(y_train_df)
 
 #convert to data tables
 X_test <- data.table(X_test_df)
@@ -66,6 +70,8 @@ rm(merged_data,feature_labels,selectedcolumns)
 
 #create new tidy data set of the averages of the selected features per subject per activity
 ag <- merged_data_mean_std[,lapply(.SD,mean),by=list(subject_id,activity_type)]
+
+#inspect the data
 #table(ag$subject_id)
 #table(ag$activity_type)
 
