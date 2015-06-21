@@ -1,5 +1,5 @@
 library(data.table)
-setwd("./getting_and_cleaning_data")
+if(!file.exists("./data")){dir.create("./data")}
 
 #download the file, unzip it, and examine contents
 fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
@@ -10,7 +10,6 @@ unzip("./data/tempfile.zip", exdir="./data/")
 #read the feature and activity labels into data tables
 feature_labels_df <- read.table("./data/UCI HAR Dataset/features.txt", header=FALSE, col.names=c("feature_id","feature_name"))
 activity_labels_df <- read.table("./data/UCI HAR Dataset/activity_labels.txt", header=FALSE, col.names=c("activity_id","activity_type"))
-feature_labels_df
 
 #edit the column names to remove parentheses
 feature_labels_df$feature_name <- gsub("\\(\\)", "", feature_labels_df[,2], ignore.case = FALSE,fixed = FALSE)
@@ -24,7 +23,6 @@ feature_labels <- paste(feature_labels_df$feature_name)
 
 #read the test and train data into data frames
 X_test_df <- read.table("./data/UCI HAR Dataset/test/X_test.txt", header=FALSE,col.names=feature_labels)
-head(X_test_df)
 y_test_df <- read.table("./data/UCI HAR Dataset/test/y_test.txt", header=FALSE, col.names=c("activity_id"))
 subject_test_df <- read.table("./data/UCI HAR Dataset/test/subject_test.txt", header=FALSE, col.names=c("subject_id"))
 X_train_df <- read.table("./data/UCI HAR Dataset/train/X_train.txt", header=FALSE, col.names=feature_labels)
