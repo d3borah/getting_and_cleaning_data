@@ -1,7 +1,7 @@
 #This is the course project for the coursera course 
 #Getting and Cleaning Data 
 
-For the project, I wrote an R script, run_analysis.R, which will injest and munge several raw data files from the /data directory and turn them into one complete tidy data table. Tidy data is data which follows these [https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0CB4QFjAA&url=http%3A%2F%2Fvita.had.co.nz%2Fpapers%2Ftidy-data.pdf&ei=bviGVbWiJZCDoQTO5IaoAQ&usg=AFQjCNFUAQr-w_87XpPhfEDoDYQw5-G5zg&sig2=zHw3WZmP8Z49c8Kl34vY-Q&bvm=bv.96339352,d.cGU](principles) expressed by Hadley Wickham.
+For the project, I wrote an R script, run_analysis.R, which will injest and munge several raw data files from the /data directory and turn them into one complete tidy data table. Tidy data is data which follows these [principles](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0CB4QFjAA&url=http%3A%2F%2Fvita.had.co.nz%2Fpapers%2Ftidy-data.pdf&ei=bviGVbWiJZCDoQTO5IaoAQ&usg=AFQjCNFUAQr-w_87XpPhfEDoDYQw5-G5zg&sig2=zHw3WZmP8Z49c8Kl34vY-Q&bvm=bv.96339352,d.cGU) as expressed by Hadley Wickham.
 
 The script will aggregate on the complete tidy data table and produce a tidy data table result, which will then be written into a file called tidy_aggregated_data.txt
 
